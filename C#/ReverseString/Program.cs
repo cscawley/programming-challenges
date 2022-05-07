@@ -1,5 +1,4 @@
-﻿using System;
-String ReverseString(String s)
+﻿String ReverseString(String s)
 {
     string[] sArray = new string[s.Length];
     var length = s.Length;

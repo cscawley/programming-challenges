@@ -14,7 +14,9 @@ int RomanToInt(string roman) {
     foreach(var numeral in roman){
         result += ConvertLetterToNumber(numeral);
     }
-    // now we need to handle subtractions for e.g. IV XC  
+    // Handle subtractions for subtracted value sequences e.g. IV, XC, etc.
+    // Use reflection on the string to see if it contains a subtracted value sequence.
+    // The amount subtracted is twice as much as the small value character. 
     if (roman.Contains("IV")|| roman.Contains("IX"))
         result -= 2;
     if (roman.Contains("XL")|| roman.Contains("XC"))
@@ -42,9 +44,8 @@ int ConvertLetterToNumber(char numeral)
         case 'I':
             return 1;
         default:
-            throw new ArgumentException("Ivalid charakter");
+            throw new ArgumentException("Invalid character");
     }
 }
-var res = RomanToInt("LVIII");
-Console.Write(res);
-System.Console.WriteLine();
+var res = RomanToInt("XIV");
+System.Console.WriteLine(res);

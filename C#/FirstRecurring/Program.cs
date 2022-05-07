@@ -8,7 +8,7 @@
 // [2,3,4,5]
 // returns undefined
 
-static int FirstRecurring(int[] array){
+int FirstRecurring(int[] array){
    HashSet<int> RecurringSet = new HashSet<int>();
    int firstRecurring = -1;
    foreach(int i in array){
@@ -19,11 +19,11 @@ static int FirstRecurring(int[] array){
            RecurringSet.Add(i);
        }
     }
-    return firstRecurring;
+    throw new ArgumentException("undefined");
 } // 0(n)
 
 int[] array1 = {2,5,1,2,3,5,1,2,4};
 int[] array2 = {2,1,1,2,3,5,1,2,4};
-int[] array3 = {2,3,4,5};
+int[] array3 = {2,2,4,5};
 var first = FirstRecurring(array3);
 System.Console.WriteLine(first);
