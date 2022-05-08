@@ -50,7 +50,8 @@ class LinkedList {
     }
     insert(index, value) {
         if (index > this.length) {
-            return undefined
+            this.append(value)
+            return this.printList()
         }
         const newHead = {
             value: value,
@@ -63,6 +64,23 @@ class LinkedList {
         // console.log(lead)
         lead.next = newHead
         this.length++
+        return this.printList()
+    }
+    remove(index){
+        // check if index is beyond this.length
+        if (index > this.length) {
+            return undefined
+        } else if (index+1 === this.length) {
+            this._traverseToIndex(index - 1).next = null
+        }
+        else if (index === 0) {
+            this.Head = this._traverseToIndex(index + 1)
+        } else {
+            const lead = this._traverseToIndex(index - 1)
+            const follow = this._traverseToIndex(index + 1)
+            lead.next = follow
+        }
+        this.length--
         return this.printList()
     }
     _traverseToIndex(index) {
@@ -89,3 +107,4 @@ myLinkedList.append(5)
 myLinkedList.append(16)
 myLinkedList.prepend(1)
 myLinkedList.insert(1, 70)
+myLinkedList.remove(4)
