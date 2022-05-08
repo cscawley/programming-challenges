@@ -21,7 +21,7 @@ class LinkedList {
         // increment length
         this.length++
         // ez
-        console.log(this.Head.next)
+        // console.log(this.Head.next)
     }
     prepend(value) {
         // create new object
@@ -30,7 +30,7 @@ class LinkedList {
         // 
         const newHead = {
             value: value,
-            // point this address to the head object
+            // this address will end up pointing to the head object
             next: null
         }
         // points next in the new object to the full head object
@@ -39,10 +39,53 @@ class LinkedList {
         this.Head = newHead
         this.length++
     }
+    printList() {
+        const myArray = []
+        let currentNode = this.Head
+        while (currentNode !== null) {
+            myArray.push(currentNode.value)
+            currentNode = currentNode.next
+        }
+        console.log(myArray)
+    }
+    insert(index, value) {
+        if (index > this.length) {
+            return undefined
+        }
+        const newHead = {
+            value: value,
+            next: null
+        }
+        const follow = this._traverseToIndex(index)
+        // console.log(follow)
+        newHead.next = follow
+        const lead = this._traverseToIndex(index - 1)
+        // console.log(lead)
+        lead.next = newHead
+        this.length++
+        return this.printList()
+    }
+    _traverseToIndex(index) {
+        let increment = 0
+        let currentNode = this.Head
+        if (index > this.length) {
+            return undefined
+        }
+        while (currentNode !== null ) {
+            if (increment === index){
+                // return object at index
+                // console.log(currentNode)
+                return currentNode
+            } else {
+                currentNode = currentNode.next 
+            }
+            increment++
+        }
+    }
 }
 
 const myLinkedList = new LinkedList(10);
 myLinkedList.append(5)
 myLinkedList.append(16)
 myLinkedList.prepend(1)
-console.log(myLinkedList)
+myLinkedList.insert(1, 70)
