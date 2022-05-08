@@ -57,11 +57,9 @@ class LinkedList {
             value: value,
             next: null
         }
-        const follow = this._traverseToIndex(index)
-        // console.log(follow)
-        newHead.next = follow
         const lead = this._traverseToIndex(index - 1)
-        // console.log(lead)
+        const follow = lead.next
+        newHead.next = follow   
         lead.next = newHead
         this.length++
         return this.printList()
@@ -77,7 +75,8 @@ class LinkedList {
             this.Head = this._traverseToIndex(index + 1)
         } else {
             const lead = this._traverseToIndex(index - 1)
-            const follow = this._traverseToIndex(index + 1)
+            const unwanted = lead.next
+            const follow = unwanted.next
             lead.next = follow
         }
         this.length--
