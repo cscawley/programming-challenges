@@ -20,11 +20,11 @@ int[] MergeSortedArrays(int[] array1, int[] array2){
     for(int i = 0; i < array2.Length; i++)
         mp.Add(array2[i], true);
     foreach(KeyValuePair<int, Boolean> k in mp)
-        System.Console.WriteLine(k.Key + " ");
+        Console.WriteLine(k.Key + " ");
     return mp.ToArray();
 }
 int[] array1 = {1, 3, 5, 7};
 int[] array2 = {2, 4, 6, 8};
 MergeSortedArrays(array1, array2);
 for (int i = 0; i < merged.Length; i++)
-            Console.Write(merged[i] + " ");
+    Console.WriteLine(merged[i] + " ");
