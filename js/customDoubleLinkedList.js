@@ -1,3 +1,6 @@
+// Better operation for searching
+// More complex management
+// More memory
 class DoubleLinkedList {
     constructor(initial) {
         this.Head = {
@@ -17,6 +20,23 @@ class DoubleLinkedList {
         }
         console.log(this.Head)
         console.log(myArray)
+    }
+    _traverseToIndex(index) {
+        let increment = 0
+        let currentNode = this.Head
+        if (index > this.length) {
+            return undefined
+        }
+        while (currentNode !== null ) {
+            if (increment === index){
+                // return object at index
+                // console.log(currentNode)
+                return currentNode
+            } else {
+                currentNode = currentNode.next 
+            }
+            increment++
+        }
     }
     append(value) {
         // const appendNode = this.tail
@@ -43,6 +63,7 @@ class DoubleLinkedList {
         }
         // points next in the new object to the full head object
         newHead.next = this.Head
+        this.Head.prev = newHead
         // point the head 
         this.Head = newHead
         this.length++
@@ -59,9 +80,29 @@ class DoubleLinkedList {
         }
         const lead = this._traverseToIndex(index - 1)
         const follow = lead.next
-        newHead.next = follow   
+        newHead.next = follow
+        newHead.prev = lead   
         lead.next = newHead
+        follow.prev = newHead
         this.length++
+        return this.printList()
+    }
+    remove(index){
+        // check if index is beyond this.length
+        if (index > this.length) {
+            return undefined
+        } else if (index+1 === this.length) {
+            this._traverseToIndex(index - 1).next = null
+        }
+        else if (index === 0) {
+            this.Head = this._traverseToIndex(index + 1)
+        } else {
+            const lead = this._traverseToIndex(index - 1)
+            const unwanted = lead.next
+            const follow = unwanted.next
+            lead.next = follow
+        }
+        this.length--
         return this.printList()
     }
 }
@@ -69,4 +110,6 @@ class DoubleLinkedList {
 const myLinkedList = new DoubleLinkedList(10)
 myLinkedList.append(5)
 myLinkedList.append(7)
+myLinkedList.prepend(3)
+myLinkedList.insert(4,1)
 myLinkedList.printList()

@@ -66,7 +66,7 @@ class LinkedList {
     }
     remove(index){
         // check if index is beyond this.length
-        if (index > this.length) {
+        if (index > this.length-1) {
             return undefined
         } else if (index+1 === this.length) {
             this._traverseToIndex(index - 1).next = null
@@ -99,11 +99,29 @@ class LinkedList {
             increment++
         }
     }
+    reverse() {
+        if (this.length === 1) {
+            return this
+        }
+        let first = this.Head
+        this.tail = this.Head
+        let second = first.next
+        while(second) {
+            const temp = second.next
+            second.next = first
+            first = second
+            second = temp
+            console.log(first)
+        }
+        this.Head.next = null
+        this.Head = first
+        return this.printList()
+    }
 }
 
 const myLinkedList = new LinkedList(10)
-myLinkedList.append(5)
 myLinkedList.append(16)
+myLinkedList.append(88)
 myLinkedList.prepend(1)
-myLinkedList.insert(1, 70)
-myLinkedList.remove(4)
+myLinkedList.printList()
+myLinkedList.reverse()
