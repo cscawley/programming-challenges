@@ -35,4 +35,4 @@ const array = [{
 array[0]; // 0(1)
 array[array.length-1] // 0(1)
 
-'helosshejheshgudkdsl'.length // 0(1) Find method is a property associated with strings in javascript
+'gbgnejvnlkwsfdjk'.length // 0(1) Find method is a property associated with strings in javascript
